@@ -12,7 +12,91 @@
 </head>
 <body>
     <div class="container">
-        <h1>Todo</h1>
+        <!-- Header -->
+        <header>
+            <h1>Todo</h1>
+            <button class="theme--switcher">
+                <img src="img/icon-sun.svg" alt="click this button to switch themes">
+            </button>
+        </header>
+
+        <!-- Create new todos -->
+        <form class="add">
+            <div class="input--wrapper">
+                <input type="checkbox" disabled name="check" class="check--todo">
+                <input type="text" name="add" id="add--todo" placeholder="Create a new todo...">
+            </div>
+        </form>
+
+        <!-- Todos -->
+        <ul class="todos">
+            <div class="input--wrapper todo">
+                <input type="checkbox" name="checkbox" class="check--todo">
+                <li>Complete online Javascript course</li>
+                <button class="delete--todo">X</button>
+            </div>
+
+            <div class="input--wrapper todo">
+                <input type="checkbox" name="checkbox" class="check--todo">
+                <li>Jog around the park 3x</li>
+                <button class="delete--todo">X</button>
+            </div>
+
+            <div class="input--wrapper todo">
+                <input type="checkbox" name="checkbox" class="check--todo">
+                <li>10 minutes meditation</li>
+                <button class="delete--todo">X</button>
+            </div>
+
+            <div class="input--wrapper todo">
+                <input type="checkbox" name="checkbox" class="check--todo">
+                <li>Read for 1 hour</li>
+                <button class="delete--todo">X</button>
+            </div>
+
+            <div class="input--wrapper todo">
+                <input type="checkbox" name="checkbox" class="check--todo">
+                <li>Pick up groceries</li>
+                <button class="delete--todo">X</button>
+            </div>
+
+            <div class="input--wrapper todo">
+                <input type="checkbox" name="checkbox" class="check--todo">
+                <li>Complete Todo App on Frontend Mentor</li>
+                <button class="delete--todo">X</button>
+            </div>
+
+            <div class="input--wrapper todo--info">
+                <p class="todo--counter"><span>5</span> items left</p>
+                <button class="clear--todo">Clear Completed</button>
+            </div>
+        </ul>
+
+        <!-- filter todo -->
+        <form class="filter--todo">
+            <div class="radio--wrapper">
+                <input type="radio" name="filter" id="all--todos" checked>
+                <label for="all">All</label>
+            </div>
+
+            <div class="radio--wrapper">
+                <input type="radio" name="filter" id="active--todos">
+                <label for="active">Active</label>
+            </div>
+
+            <div class="radio--wrapper">
+                <input type="radio" name="filter" id="completed--todos">
+                <label for="completed">Completed</label>
+            </div>
+        </form>
+    </div>
+
+    <p>Drag and drop to reorder list</p>
+
+    <!-- attribution -->
+    <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="https://github.com/Oluwalolope" target="_blank">Oluwalolope</a>.
     </div>
 
     <script src="dist/script.js"></script>
