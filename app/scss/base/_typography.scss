@@ -1,0 +1,6 @@
+@use './variables' as *;
+
+h1 {
+    font-size: $base-font-size;
+    color: green;
+}
