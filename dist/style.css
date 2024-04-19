@@ -1,1 +1,79 @@
-html{box-sizing:border-box;font-size:100%}*{box-sizing:inherit}h1{color:green;font-size:1.125rem}/*# sourceMappingURL=style.css.map */
+:root {
+  --clr-primary: hsl(0, 0%, 98%);
+  --clr-secondary: hsl(235, 19%, 35%);
+  --clr-accent: hsl(220, 98%, 61%);
+  --clr-font: hsl(236, 33%, 92%);
+  --border-radius: 0.3125rem;
+}
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+h1 {
+  font-size: 1.125rem;
+}
+
+body {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100% - 2rem, 500px);
+  margin-inline: auto;
+  border-radius: var(--border-radius);
+  margin-top: 2rem;
+  background-color: rgb(100, 100, 32);
+}
+.container > * {
+  background-color: var(--clr-primary);
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.todos .input--wrapper:not(:first-child) {
+  border-top: 1px solid var(--clr-font);
+}
+
+.input--wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.5rem;
+}
+.input--wrapper .list--wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.input--wrapper .delete--todo {
+  margin-left: 0.5rem;
+}
+
+form.add {
+  margin-bottom: 0.75rem;
+}
+
+.todo--info {
+  display: flex;
+  justify-content: space-between;
+}
+
+form.filter--todo {
+  display: flex;
+  gap: 0.5rem;
+}

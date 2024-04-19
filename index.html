@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon-32x32.png" type="image/x-icon">
     <!-- CSS reset -->
-    <link rel="stylesheet" href="dist/css-reset.css">
+    <link rel="stylesheet" href="css-reset.css">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="dist/style.css">
     <title>Todo App</title>
@@ -17,7 +17,7 @@
         <header>
             <h1>Todo</h1>
             <button class="theme--switcher">
-                <img src="img/icon-sun.svg" alt="click this button to switch themes">
+                <img src="assets/img/icon-sun.svg" alt="click this button to switch themes">
             </button>
         </header>
 
@@ -32,76 +32,89 @@
         <!-- Todos -->
         <ul class="todos">
             <div class="input--wrapper todo">
-                <input type="checkbox" name="checkbox" class="check--todo">
-                <li>Complete online Javascript course</li>
+                <div class="list--wrapper">
+                    <input type="checkbox" name="checkbox" class="check--todo">
+                    <li>Complete online Javascript course</li>
+                </div>
                 <button class="delete--todo">
-                    <img src="img/icon-cross.svg" alt="cross icon">
+                    <img src="assets/img/icon-cross.svg" alt="cross icon">
                 </button>
             </div>
 
             <div class="input--wrapper todo">
-                <input type="checkbox" name="checkbox" class="check--todo">
-                <li>Jog around the park 3x</li>
+                <div class="list--wrapper">
+                    <input type="checkbox" name="checkbox" class="check--todo">
+                    <li>Jog around the park 3x</li>
+                </div>
                 <button class="delete--todo">
-                    <img src="img/icon-cross.svg" alt="cross icon">
+                    <img src="assets/img/icon-cross.svg" alt="cross icon">
                 </button>
             </div>
 
             <div class="input--wrapper todo">
-                <input type="checkbox" name="checkbox" class="check--todo">
-                <li>10 minutes meditation</li>
+                <div class="list--wrapper">
+                    <input type="checkbox" name="checkbox" class="check--todo">
+                    <li>10 minutes meditation</li>
+                </div>
                 <button class="delete--todo">
-                    <img src="img/icon-cross.svg" alt="cross icon">
+                    <img src="assets/img/icon-cross.svg" alt="cross icon">
                 </button>
             </div>
 
             <div class="input--wrapper todo">
-                <input type="checkbox" name="checkbox" class="check--todo">
-                <li>Read for 1 hour</li>
+                <div class="list--wrapper">
+                    <input type="checkbox" name="checkbox" class="check--todo">
+                    <li>Read for 1 hour Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ea dolore eveniet iure sequi repellendus facilis dignissimos culpa, expedita nostrum aperiam, consequuntur fugiat inventore fuga nobis neque labore. Perspiciatis, necessitatibus.</li>
+                </div>
                 <button class="delete--todo">
-                    <img src="img/icon-cross.svg" alt="cross icon">
+                    <img src="assets/img/icon-cross.svg" alt="cross icon">
                 </button>
             </div>
 
             <div class="input--wrapper todo">
-                <input type="checkbox" name="checkbox" class="check--todo">
-                <li>Pick up groceries</li>
+                <div class="list--wrapper">
+                    <input type="checkbox" name="checkbox" class="check--todo">
+                    <li>Pick up groceries</li>
+                </div>
                 <button class="delete--todo">
-                    <img src="img/icon-cross.svg" alt="cross icon">
+                    <img src="assets/img/icon-cross.svg" alt="cross icon">
                 </button>
             </div>
 
             <div class="input--wrapper todo">
-                <input type="checkbox" name="checkbox" class="check--todo">
-                <li>Complete Todo App on Frontend Mentor</li>
+                <div class="list--wrapper">
+                    <input type="checkbox" name="checkbox" class="check--todo">
+                    <li>Complete Todo App on Frontend Mentor</li>
+                </div>
                 <button class="delete--todo">
-                    <img src="img/icon-cross.svg" alt="cross icon">
+                    <img src="assets/img/icon-cross.svg" alt="cross icon">
                 </button>
             </div>
 
             <div class="input--wrapper todo--info">
                 <p class="todo--counter"><span>5</span> items left</p>
+
+                <!-- filter todo -->
+                <form class="filter--todo">
+                    <div class="radio--wrapper">
+                        <input type="radio" name="filter" id="all--todos" checked>
+                        <label for="all">All</label>
+                    </div>
+
+                    <div class="radio--wrapper">
+                        <input type="radio" name="filter" id="active--todos">
+                        <label for="active">Active</label>
+                    </div>
+
+                    <div class="radio--wrapper">
+                        <input type="radio" name="filter" id="completed--todos">
+                        <label for="completed">Completed</label>
+                    </div>
+                </form>
+
                 <button class="clear--todo">Clear Completed</button>
             </div>
         </ul>
-
-        <!-- filter todo -->
-        <form class="filter--todo">
-            <div class="radio--wrapper">
-                <input type="radio" name="filter" id="all--todos" checked>
-                <label for="all">All</label>
-            </div>
-
-            <div class="radio--wrapper">
-                <input type="radio" name="filter" id="active--todos">
-                <label for="active">Active</label>
-            </div>
-
-            <div class="radio--wrapper">
-                <input type="radio" name="filter" id="completed--todos">
-                <label for="completed">Completed</label>
-            </div>
-        </form>
     </div>
 
     <!-- basic info -->

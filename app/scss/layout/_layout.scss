@@ -1,0 +1,68 @@
+@use '../base/globals' as *;
+
+body {
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100% - 2rem, 500px);
+    margin-inline: auto;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+    background-color: rgb(100, 100, 32);
+    
+    > * {
+        background-color: var(--clr-primary);
+        width: 100%;
+        padding: .5rem;
+    }
+
+}
+
+.todos {
+    .input--wrapper{
+        &:not(:first-child) {
+            border-top: 1px solid var(--clr-font);
+        }
+    }
+}
+
+.input--wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 2.5rem;
+
+    .list--wrapper {
+        display: flex;
+        align-items: center;
+        gap: .5rem
+    }
+
+    .delete--todo {
+        margin-left: .5rem;
+    }
+}
+
+
+form.add {
+    margin-bottom: .75rem;
+}
+
+.todo--info {
+    display: flex;
+    justify-content: space-between;
+}
+
+form.filter--todo {
+    display: flex;
+    gap: .5rem;
+}
