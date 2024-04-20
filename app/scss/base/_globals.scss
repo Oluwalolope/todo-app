@@ -1,5 +1,6 @@
 :root {
-    --clr-primary: hsl(0, 0%, 98%);
+    --clr-light: hsl(0, 0%, 98%);
+    --clr-primary: hsl(0, 0%, 100%);
     --clr-secondary: hsl(235, 19%, 35%);
     --clr-accent: hsl(220, 98%, 61%);
 
@@ -8,6 +9,9 @@
 
     //border
     --border-radius: 0.3125rem;
+
+    //gap
+    --gap: .5rem;
 }
 
 html {

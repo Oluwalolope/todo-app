@@ -1,7 +1,10 @@
 @use '../base/globals' as *;
 
 body {
-    background-color: pink;
+    background-color: var(--clr-light);
+    background-image: url(../assets/img/bg-desktop-light.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 35vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,17 +19,27 @@ body {
     margin-inline: auto;
     border-radius: var(--border-radius);
     margin-top: 2rem;
-    background-color: rgb(100, 100, 32);
     
     > * {
-        background-color: var(--clr-primary);
+            &:not(header){
+                background-color: var(--clr-primary);
+            }
         width: 100%;
-        padding: .5rem;
+        padding: var(--gap);
     }
 
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
 .todos {
+    border-radius: var(--border-radius);
     .input--wrapper{
         &:not(:first-child) {
             border-top: 1px solid var(--clr-font);
@@ -39,22 +52,37 @@ body {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    min-height: 2.5rem;
+    min-height: 3rem;
 
     .list--wrapper {
         display: flex;
         align-items: center;
-        gap: .5rem
+        gap: var(--gap);
+
+        input[type=checkbox] {
+            &:checked {
+                ~li {
+                    text-decoration: line-through;
+                    opacity: .75;
+                }
+            }
+        }
     }
 
     .delete--todo {
-        margin-left: .5rem;
+        margin-left: var(--gap);
     }
 }
 
 
 form.add {
     margin-bottom: .75rem;
+    border-radius: var(--border-radius);
+
+    .input--wrapper {
+        justify-content: flex-start;
+        gap: var(--gap);
+    }
 }
 
 .todo--info {
@@ -64,5 +92,21 @@ form.add {
 
 form.filter--todo {
     display: flex;
-    gap: .5rem;
+    gap: calc(var(--gap) * 1.5);
+}
+
+.radio--wrapper {
+
+    input[type=radio] {
+        opacity: 0;
+    }
+
+    label {
+        display: block;
+        margin-top: -15px;
+    }
+}
+
+.attribution {
+    margin-top: 2rem;
 }
