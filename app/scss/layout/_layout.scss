@@ -1,7 +1,7 @@
 @use '../base/globals' as *;
 
 body {
-    background-color: var(--clr-light);
+    background-color: var(--background);
     background-image: url(../assets/images/bg-desktop-light.jpg);
     background-repeat: no-repeat;
     background-size: 100% 35vh;
@@ -43,7 +43,7 @@ header {
     margin-bottom: calc(var(--gap) * 1.5);
     .input--wrapper{
         &:not(:first-child) {
-            border-top: 1px solid var(--clr-font);
+            border-top: 1px solid var(--clr-border);
         }
     }
 }

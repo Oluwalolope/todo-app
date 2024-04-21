@@ -7,15 +7,39 @@
   src: url(../../../assets/fonts/JosefinSans-Regular.ttf) format("truetype");
 }
 :root {
-  --clr-light: hsl(0, 0%, 98%);
+  --background: hsl(0, 0%, 98%);
+  --clr-light: hsl(0, 0%, 100%);
   --clr-primary: hsl(0, 0%, 100%);
   --clr-secondary: hsl(235, 19%, 35%);
   --clr-accent: hsl(220, 98%, 61%);
-  --clr-font: hsl(236, 33%, 92%);
+  --clr-font: hsl(235, 19%, 35%);
+  --clr-border: hsla(235, 32%, 92%);
   --border-radius: 0.3125rem;
   --gap: .5rem;
   --ff-700: josefins-sans-bold, sans-serif;
   --ff-400: josefins-sans-regular, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: hsl(235, 21%, 11%);
+    --clr-primary: hsl(235, 24%, 19%);
+    --clr-font: hsl(236, 33%, 92%);
+    --clr-border: hsla(235, 32%, 92%, 0.3);
+  }
+}
+body.lightmode {
+  --background: hsl(0, 0%, 98%);
+  --clr-primary: hsl(0, 0%, 100%);
+  --clr-font: hsl(235, 19%, 35%);
+  --clr-border: hsla(235, 32%, 92%);
+}
+
+body.darkmode {
+  --background: hsl(235, 21%, 11%);
+  --clr-primary: hsl(235, 24%, 19%);
+  --clr-font: hsl(236, 33%, 92%);
+  --clr-border: hsla(235, 32%, 92%, 0.3);
 }
 
 html {
@@ -30,13 +54,14 @@ html {
 h1 {
   font-size: 3rem;
   font-family: var(--ff-700);
-  color: var(--clr-primary);
+  color: var(--clr-light);
   text-transform: uppercase;
   letter-spacing: 0.4375rem;
 }
 
-li, p, label, button, input[type=text], div {
+a, a:visited, a:active, li, p, label, button, input[type=text], div {
   font-family: var(--ff-400);
+  color: var(--clr-font);
 }
 
 p {
@@ -45,7 +70,7 @@ p {
 }
 
 body {
-  background-color: var(--clr-light);
+  background-color: var(--background);
   background-image: url(../assets/images/bg-desktop-light.jpg);
   background-repeat: no-repeat;
   background-size: 100% 35vh;
@@ -86,7 +111,7 @@ header {
   margin-bottom: calc(var(--gap) * 1.5);
 }
 .todos .input--wrapper:not(:first-child) {
-  border-top: 1px solid var(--clr-font);
+  border-top: 1px solid var(--clr-border);
 }
 
 .input--wrapper {
@@ -190,6 +215,7 @@ input[type=text] {
   padding: 5px 5px 3px 0;
   outline: none;
   border-width: 0;
+  background-color: var(--clr-primary);
 }
 input[type=text]:focus {
   border-width: 0 0 1px 0;
@@ -201,7 +227,7 @@ input[type=checkbox] {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border: 1px solid var(--clr-font);
+  border: 1px solid var(--clr-border);
   border-radius: 50%;
   width: 20px;
   height: 20px;

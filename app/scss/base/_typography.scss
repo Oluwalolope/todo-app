@@ -3,13 +3,14 @@
 h1 {
     font-size: 3rem;
     font-family: var(--ff-700);
-    color: var(--clr-primary);
+    color: var(--clr-light);
     text-transform: uppercase;
     letter-spacing: 0.4375rem;
 }
 
-li, p, label, button, input[type=text], div {
+a, a:visited, a:active, li, p, label, button, input[type=text], div {
     font-family: var(--ff-400);
+    color: var(--clr-font);
 }
 
 p {
