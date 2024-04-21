@@ -2,7 +2,7 @@
 
 body {
     background-color: var(--clr-light);
-    background-image: url(../assets/img/bg-desktop-light.jpg);
+    background-image: url(../assets/images/bg-desktop-light.jpg);
     background-repeat: no-repeat;
     background-size: 100% 35vh;
     display: flex;
@@ -40,6 +40,7 @@ header {
 
 .todos {
     border-radius: var(--border-radius);
+    margin-bottom: calc(var(--gap) * 1.5);
     .input--wrapper{
         &:not(:first-child) {
             border-top: 1px solid var(--clr-font);
@@ -93,6 +94,37 @@ form.add {
 form.filter--todo {
     display: flex;
     gap: calc(var(--gap) * 1.5);
+}
+
+.desktop--only {
+    display: none;
+}
+
+.mobile--only {
+    margin-inline: auto;
+    border-radius: var(--border-radius);
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+
+@media (min-width: 500px) {
+    .desktop--only {
+        display: flex;
+    }
+    .mobile--only {
+        display: none;
+    }
+     .delete--todo {
+        opacity: 0;
+    }
+    .todo {
+        &:hover {
+             .delete--todo {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .radio--wrapper {

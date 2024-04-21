@@ -1,3 +1,11 @@
+@font-face {
+  font-family: josefins-sans-bold;
+  src: url(../../../assets/fonts/JosefinSans-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: josefins-sans-regular;
+  src: url(../../../assets/fonts/JosefinSans-Regular.ttf) format("truetype");
+}
 :root {
   --clr-light: hsl(0, 0%, 98%);
   --clr-primary: hsl(0, 0%, 100%);
@@ -6,6 +14,8 @@
   --clr-font: hsl(236, 33%, 92%);
   --border-radius: 0.3125rem;
   --gap: .5rem;
+  --ff-700: josefins-sans-bold, sans-serif;
+  --ff-400: josefins-sans-regular, sans-serif;
 }
 
 html {
@@ -18,12 +28,20 @@ html {
 }
 
 h1 {
-  font-size: 1.125rem;
+  font-size: 3rem;
+  font-family: var(--ff-700);
+  color: var(--clr-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.4375rem;
+}
+
+li, p, label, button, input[type=text], div {
+  font-family: var(--ff-400);
 }
 
 body {
   background-color: var(--clr-light);
-  background-image: url(../assets/img/bg-desktop-light.jpg);
+  background-image: url(../assets/images/bg-desktop-light.jpg);
   background-repeat: no-repeat;
   background-size: 100% 35vh;
   display: flex;
@@ -60,6 +78,7 @@ header {
 
 .todos {
   border-radius: var(--border-radius);
+  margin-bottom: calc(var(--gap) * 1.5);
 }
 .todos .input--wrapper:not(:first-child) {
   border-top: 1px solid var(--clr-font);
@@ -104,6 +123,32 @@ form.filter--todo {
   gap: calc(var(--gap) * 1.5);
 }
 
+.desktop--only {
+  display: none;
+}
+
+.mobile--only {
+  margin-inline: auto;
+  border-radius: var(--border-radius);
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+@media (min-width: 500px) {
+  .desktop--only {
+    display: flex;
+  }
+  .mobile--only {
+    display: none;
+  }
+  .delete--todo {
+    opacity: 0;
+  }
+  .todo:hover .delete--todo {
+    opacity: 1;
+  }
+}
 .radio--wrapper input[type=radio] {
   opacity: 0;
 }
@@ -126,7 +171,7 @@ button:hover {
 
 input[type=text] {
   width: 90%;
-  padding: 12px 5px 3px 0;
+  padding: 5px 5px 3px 0;
   outline: none;
   border-width: 0;
 }
@@ -149,7 +194,7 @@ input[type=checkbox]:hover {
   cursor: pointer;
 }
 input[type=checkbox]::before {
-  content: url(/assets/img/icon-check.svg);
+  content: url(/assets/images/icon-check.svg);
   display: grid;
   place-items: center;
   width: 100%;

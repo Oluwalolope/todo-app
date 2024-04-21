@@ -8,9 +8,8 @@ button {
 }
 
 input[type=text] {
-    // height: 100%;
     width: 90%;
-    padding: 12px 5px 3px 0;
+    padding: 5px 5px 3px 0;
     outline: none;
     border-width: 0;
 
@@ -33,7 +32,7 @@ input[type=checkbox] {
     }
 
     &::before {
-        content: url(/assets/img/icon-check.svg);
+        content: url(/assets/images/icon-check.svg);
         display: grid;
         place-items: center;
         width: 100%;

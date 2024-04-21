@@ -1,5 +1,13 @@
-@use './variables' as *;
+@use './globals' as *;
 
 h1 {
-    font-size: $base-font-size;
+    font-size: 3rem;
+    font-family: var(--ff-700);
+    color: var(--clr-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.4375rem;
+}
+
+li, p, label, button, input[type=text], div {
+    font-family: var(--ff-400);
 }

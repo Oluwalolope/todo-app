@@ -1,3 +1,12 @@
+@font-face {
+    font-family: josefins-sans-bold;
+    src: url(../../../assets/fonts/JosefinSans-Bold.ttf)format('truetype');
+}
+@font-face {
+    font-family: josefins-sans-regular;
+    src: url(../../../assets/fonts/JosefinSans-Regular.ttf)format('truetype');
+}
+
 :root {
     --clr-light: hsl(0, 0%, 98%);
     --clr-primary: hsl(0, 0%, 100%);
@@ -12,6 +21,10 @@
 
     //gap
     --gap: .5rem;
+
+    // font family
+    --ff-700: josefins-sans-bold, sans-serif;
+    --ff-400: josefins-sans-regular, sans-serif;
 }
 
 html {
