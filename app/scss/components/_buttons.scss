@@ -60,6 +60,15 @@ input[type=radio] {
     &:checked{
         ~label{
             color: var(--clr-accent);
+            opacity: 1;
         }
+    }
+}
+
+.clear--todo {
+    opacity: .8;
+
+    &:hover {
+        opacity: 1;
     }
 }

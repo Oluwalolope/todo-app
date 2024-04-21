@@ -11,3 +11,8 @@ h1 {
 li, p, label, button, input[type=text], div {
     font-family: var(--ff-400);
 }
+
+p {
+    font-size: .975rem;
+    opacity: .8;
+}

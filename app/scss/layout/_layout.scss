@@ -60,11 +60,17 @@ header {
         align-items: center;
         gap: var(--gap);
 
+        li {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         input[type=checkbox] {
             &:checked {
                 ~li {
                     text-decoration: line-through;
-                    opacity: .75;
+                    opacity: .5;
                 }
             }
         }
@@ -89,16 +95,30 @@ form.add {
 .todo--info {
     display: flex;
     justify-content: space-between;
+    .desktop--only {
+        display: none;
+
+        .radio--wrapper {
+            label {
+                opacity: .8;
+            }
+            &:hover {
+                cursor: pointer;
+                
+                label {
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }
+
 
 form.filter--todo {
     display: flex;
     gap: calc(var(--gap) * 1.5);
 }
 
-.desktop--only {
-    display: none;
-}
 
 .mobile--only {
     margin-inline: auto;
@@ -109,10 +129,12 @@ form.filter--todo {
 }
 
 @media (min-width: 500px) {
-    .desktop--only {
-        display: flex;
+    .todo--info {
+        .desktop--only {
+            display: flex;
+        }
     }
-    .mobile--only {
+    form.mobile--only {
         display: none;
     }
      .delete--todo {
@@ -140,5 +162,5 @@ form.filter--todo {
 }
 
 .attribution {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
