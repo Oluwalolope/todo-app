@@ -163,7 +163,12 @@ form.add .input--wrapper {
   opacity: 1;
 }
 
-form.filter--todo {
+form.filter--desktop--todo {
+  display: flex;
+  gap: calc(var(--gap) * 1.5);
+}
+
+form.filter--mobile--todo {
   display: flex;
   gap: calc(var(--gap) * 1.5);
 }
