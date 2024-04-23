@@ -1,24 +1,27 @@
 const addForm = document.querySelector(".add");
 const todoList = document.querySelector(".todos");
+const todos = document.querySelectorAll(".todo");
 const desktopFilter = document.querySelector("form.filter--desktop--todo");
 const mobileFilter = document.querySelector("form.filter--mobile--todo");
 const checkBoxes = todoList.querySelectorAll('input[type=checkbox]');
-
-//console.log(innerWidth);
+const clearCompletedTodosButton = document.querySelector('button.clear--completed');
 
 //Function for knowing the value of the filter chosen
+let filter = null;
 const filterValues = () => {
-  innerWidth >= 500 ? 
-  console.log(`The desktop value is ${desktopFilter.filter.value}`)
-  : 
-  console.log(`The mobile value is ${mobileFilter.filter.value}`);
+  innerWidth >= 500 ? filter = desktopFilter.filter.value : filter = mobileFilter.filter.value;
+  return filter;
 }
 
 //Function for checking the todo status
 const todoStatus = () => {
   for (let i = 0; i < checkBoxes.length; i++) {
     const checkBox = checkBoxes[i];
-    checkBox.checked ? console.log(`Todo ${i} is completed`) : console.log(`Todo ${i} is active`);
+
+    checkBox.checked ? 
+    checkBox.parentElement.parentElement.classList.add('completed') 
+    : 
+    checkBox.parentElement.parentElement.classList.remove('completed');
   }
 }
 
@@ -26,21 +29,8 @@ const todoStatus = () => {
 const todoCount = () => {
   let todoCounter = document.querySelector('.todo--counter > span');
 
-  console.log(todoList.children.length - 1);
-  todoCounter.textContent = todoList.children.length - 1;
+  todoCounter.textContent = todos.length;
 }
-
-desktopFilter.addEventListener('click', e => {
-  console.log('the desktop has been clicked');
-  // todoStatus();
-  filterValues();
-});
-
-mobileFilter.addEventListener('click', e => {
-  console.log('the mobile has been clicked');
-  // todoStatus();
-  filterValues();
-});
 
 
 //Todo Template Function
@@ -81,21 +71,53 @@ todoList.addEventListener("click", (e) => {
   todoCount();//update todo count
 });
 
-//Search Function
-const filterTodos = (term) => {
-  //Filter off the lists that don't match the term being searched for
-  Array.from(todoList.children)
-    .filter((todo) => !todo.textContent.toLowerCase().includes(term)) //Return values that don't include the term being searched for
-    .forEach((todo) => todo.classList.add("filtered")); //Add a class of filtered to all the terms that weren't being searched for
+const clearCompletedTodos = () => {
+  todoStatus();
+  todos.forEach(todo => {
+    if(todo.classList.contains('completed')) {
+      todo.remove();
+    };
+  });
+  todoCount();
+}
 
-  //Restore a filtered-off lists if it matches what is being searched for
-  Array.from(todoList.children)
-    .filter((todo) => todo.textContent.toLowerCase().includes(term)) //Return values that inlude the term being searched for
-    .forEach((todo) => todo.classList.remove("filtered")); //Remove a class of filtered to all the terms that were being searched for
-};
+//function for filtering todos
+const filterTodos = (filter) => {
+  if(filter == "all"){
+    todos.forEach(todo => {
+      todo.style.display = "flex";
+    });
+    todoCount();
+    console.log("the 'all' button was clicked");
+  }
+  if(filter == "active"){
+    todos.forEach(todo => {
+      todo.classList.contains('completed')? todo.style.display = "none" : todo.style.display = "flex";
+    });
+    todoCount();
+    console.log("the 'active' button was clicked");
+  }
+  if(filter == "completed"){
+    todos.forEach(todo => {
+      todo.classList.contains('completed')? todo.style.display = "flex" : todo.style.display= "none";
+    });
+    todoCount();
+    console.log("the 'completed' button was clicked");
+  }
+}
 
-// //Search for Todos
-// search.addEventListener("keyup", () => {
-//   const term = search.value.trim().toLowerCase(); //Get the values the user puts into the search field for every instance
-//   filterTodos(term);
-// });
+desktopFilter.addEventListener('click', e => {
+  console.log('the desktop has been clicked');
+  todoStatus();
+  filterValues();
+  filterTodos(filter);
+});
+
+mobileFilter.addEventListener('click', e => {
+  console.log('the mobile has been clicked');
+  todoStatus();
+  filterValues();
+  filterTodos(filter);
+});
+
+clearCompletedTodosButton.addEventListener('click', clearCompletedTodos());

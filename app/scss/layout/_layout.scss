@@ -42,8 +42,8 @@ header {
     border-radius: var(--border-radius);
     margin-bottom: calc(var(--gap) * 1.5);
     .input--wrapper{
-        &:not(:first-child) {
-            border-top: 1px solid var(--clr-border);
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--clr-border);
         }
     }
 }

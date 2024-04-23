@@ -110,8 +110,8 @@ header {
   border-radius: var(--border-radius);
   margin-bottom: calc(var(--gap) * 1.5);
 }
-.todos .input--wrapper:not(:first-child) {
-  border-top: 1px solid var(--clr-border);
+.todos .input--wrapper:not(:last-child) {
+  border-bottom: 1px solid var(--clr-border);
 }
 
 .input--wrapper {
@@ -266,9 +266,9 @@ input[type=radio]:checked ~ label {
   opacity: 1;
 }
 
-.clear--todo {
+.clear--completed {
   opacity: 0.8;
 }
-.clear--todo:hover {
+.clear--completed:hover {
   opacity: 1;
 }
