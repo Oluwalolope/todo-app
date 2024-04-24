@@ -1,5 +1,5 @@
 //Getting a reference for the input field
-addForm = document.querySelector(".add");
+const addForm = document.querySelector(".add");
 
 //Getting a reference for the todo list
 const todoList = document.querySelector(".todos");
