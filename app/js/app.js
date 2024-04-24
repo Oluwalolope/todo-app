@@ -1,37 +1,51 @@
-const addForm = document.querySelector(".add");
+//Getting a reference for the input field
+addForm = document.querySelector(".add");
+
+//Getting a reference for the todo list
 const todoList = document.querySelector(".todos");
-const todos = document.querySelectorAll(".todo");
+
+//Getting a reference for the mobile filter and desktop filter
 const desktopFilter = document.querySelector("form.filter--desktop--todo");
 const mobileFilter = document.querySelector("form.filter--mobile--todo");
-const checkBoxes = todoList.querySelectorAll('input[type=checkbox]');
+
+//Getting a reference for the clear completed todo button
 const clearCompletedTodosButton = document.querySelector('button.clear--completed');
+
+
 
 //Function for knowing the value of the filter chosen
 let filter = null;
 const filterValues = () => {
+  //If the width of the screen is equal to or greater than 500 use the desktop filter, else use mobile filter
   innerWidth >= 500 ? filter = desktopFilter.filter.value : filter = mobileFilter.filter.value;
   return filter;
 }
 
+
 //Function for checking the todo status
 const todoStatus = () => {
-  for (let i = 0; i < checkBoxes.length; i++) {
-    const checkBox = checkBoxes[i];
-
-    checkBox.checked ? 
-    checkBox.parentElement.parentElement.classList.add('completed') 
-    : 
-    checkBox.parentElement.parentElement.classList.remove('completed');
-  }
+  Array.from(todoList.children)
+    .filter(todo => todo.classList.contains('todo'))
+      .forEach(todo => {
+        let checkBox = todo.querySelector('input[type=checkbox]');
+        //iterate through each todo and check wheter they have been checked or not
+        checkBox.checked ? 
+        todo.classList.add('completed') 
+        : 
+        todo.classList.remove('completed');
+      });
 }
 
 //Function for counting the todos
 const todoCount = () => {
   let todoCounter = document.querySelector('.todo--counter > span');
 
-  todoCounter.textContent = todoList.children.length -1;
+  todoCounter.textContent =
+    //Only count todos that are visibly rendered on the screen
+    Array.from(todoList.children)
+      .filter(todo => todo.classList.contains("todo"))
+      .filter(todo => todo.style.display !== "none").length;
 }
-
 
 //Todo Template Function
 const generateTemplate = (todo) => {
@@ -64,61 +78,73 @@ addForm.addEventListener("submit", (e) => {
 //Remove Todos
 todoList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete--todo")) {
-    e.target.parentElement.remove();
+    e.target.parentElement.remove();//if the button is clicked
   } else if (e.target.parentElement.classList.contains("delete--todo")) {
-    e.target.parentElement.parentElement.remove();
+    e.target.parentElement.parentElement.remove();//if the image icon wrapped inside the button is clicked
   }
   todoCount();//update todo count
 });
 
+//Function for Clearing Completed Todos
 const clearCompletedTodos = () => {
-  todoStatus();
+  todoStatus();//check whether the todos have been checked
 
-  todos.forEach(todo => {
-    if(todo.classList.contains('completed')) {
-      todo.remove();
-    };
+  Array.from(todoList.children)
+  .filter(todo => todo.classList.contains('todo'))
+    .forEach(todo => {
+      if(todo.classList.contains('completed')) {
+        todo.remove();
+      };
   });
 
-  todoCount();
+  todoCount();//update the todo count
 }
 
 //function for filtering todos
 const filterTodos = (filter) => {
   if(filter == "all"){
-    todos.forEach(todo => {
-      todo.style.display = "flex";
-    });
+    Array.from(todoList.children)
+    .filter(todo => todo.classList.contains('todo'))
+      .forEach(todo => {
+        todo.style.display = "flex";
+      });
     todoCount();
   }
   if(filter == "active"){
-    todos.forEach(todo => {
-      todo.classList.contains('completed')? todo.style.display = "none" : todo.style.display = "flex";
-    });
+    Array.from(todoList.children)
+    .filter(todo => todo.classList.contains('todo'))
+      .forEach(todo => {
+        todo.classList.contains('completed')? todo.style.display = "none" : todo.style.display = "flex";
+      });
     todoCount();
   }
   if(filter == "completed"){
-    todos.forEach(todo => {
-      todo.classList.contains('completed')? todo.style.display = "flex" : todo.style.display= "none";
-    });
+    Array.from(todoList.children)
+    .filter(todo => todo.classList.contains('todo'))
+      .forEach(todo => {
+        todo.classList.contains('completed')? todo.style.display = "flex" : todo.style.display= "none";
+      });
     todoCount();
   }
 }
 
+//Listen for when a filter button is clicked on desktop mode
 desktopFilter.addEventListener('click', e => {
   todoStatus();
   filterValues();
   filterTodos(filter);
 });
 
+//Listen for when a filter button is clicked on mobile mode
 mobileFilter.addEventListener('click', e => {
   todoStatus();
   filterValues();
   filterTodos(filter);
 });
 
+//Listen for when the clear completed todos button is clicked 
 clearCompletedTodosButton.addEventListener('click', () => {
   clearCompletedTodos();
 });
 
-todoCount();
+todoCount();//count the todos on page load
