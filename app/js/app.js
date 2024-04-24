@@ -29,7 +29,7 @@ const todoStatus = () => {
 const todoCount = () => {
   let todoCounter = document.querySelector('.todo--counter > span');
 
-  todoCounter.textContent = todos.length;
+  todoCounter.textContent = todoList.children.length -1;
 }
 
 
@@ -73,11 +73,13 @@ todoList.addEventListener("click", (e) => {
 
 const clearCompletedTodos = () => {
   todoStatus();
+
   todos.forEach(todo => {
     if(todo.classList.contains('completed')) {
       todo.remove();
     };
   });
+
   todoCount();
 }
 
@@ -88,36 +90,35 @@ const filterTodos = (filter) => {
       todo.style.display = "flex";
     });
     todoCount();
-    console.log("the 'all' button was clicked");
   }
   if(filter == "active"){
     todos.forEach(todo => {
       todo.classList.contains('completed')? todo.style.display = "none" : todo.style.display = "flex";
     });
     todoCount();
-    console.log("the 'active' button was clicked");
   }
   if(filter == "completed"){
     todos.forEach(todo => {
       todo.classList.contains('completed')? todo.style.display = "flex" : todo.style.display= "none";
     });
     todoCount();
-    console.log("the 'completed' button was clicked");
   }
 }
 
 desktopFilter.addEventListener('click', e => {
-  console.log('the desktop has been clicked');
   todoStatus();
   filterValues();
   filterTodos(filter);
 });
 
 mobileFilter.addEventListener('click', e => {
-  console.log('the mobile has been clicked');
   todoStatus();
   filterValues();
   filterTodos(filter);
 });
 
-clearCompletedTodosButton.addEventListener('click', clearCompletedTodos());
+clearCompletedTodosButton.addEventListener('click', () => {
+  clearCompletedTodos();
+});
+
+todoCount();
