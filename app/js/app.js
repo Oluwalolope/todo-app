@@ -39,12 +39,20 @@ const todoStatus = () => {
 //Function for counting the todos
 const todoCount = () => {
   let todoCounter = document.querySelector('.todo--counter > span');
-
+  
   todoCounter.textContent =
-    //Only count todos that are visibly rendered on the screen
-    Array.from(todoList.children)
-      .filter(todo => todo.classList.contains("todo"))
-      .filter(todo => todo.style.display !== "none").length;
+  //Only count todos that are visibly rendered on the screen
+  Array.from(todoList.children)
+  .filter(todo => todo.classList.contains("todo"))
+  .filter(todo => todo.style.display !== "none").length;
+}
+
+//Function for getting todos from local storage
+const getTodos = () => JSON.parse(localStorage.getItem('todos')) || [];
+
+//Function for storing todos in local storage
+const saveTodos = (todos) => {
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 //Todo Template Function
@@ -64,14 +72,50 @@ const generateTemplate = (todo) => {
   todoList.prepend(newTodo);
 };
 
+//Render stored todo items on page load
+const renderTodosFromLocalStorage = () => {
+  const storedTodos = getTodos();
+
+  storedTodos.forEach((storedTodo) => {
+    const newTodo = document.createElement("div");
+    newTodo.classList.add("input--wrapper");
+    newTodo.classList.add("todo");
+    newTodo.innerHTML = `
+       <div class="list--wrapper">
+          <input type="checkbox" name="checkbox" class="check--todo">
+          <li>${storedTodo.todo}</li>
+        </div>
+       <button class="delete--todo">
+         <img src="assets/images/icon-cross.svg" alt="cross icon">
+       </button>
+    `;
+    todoList.prepend(newTodo);
+
+  });
+
+  todoCount();
+}
+
 //Add new todos
 addForm.addEventListener("submit", (e) => {
   e.preventDefault(); //Prevent the page from refreshing on submit
-  const todo = addForm.add.value.trim(); //Remove excess white space
-  if (todo.length) {
-    generateTemplate(todo); //only add todos that are atleast a character long
+  const todoText = addForm.add.value.trim(); //Remove excess white space
+  const todoId = Date.now();
+  if (todoText.length) {
+    let todos = getTodos();
+    todos.push({
+      id: todoId,
+      todo: todoText,
+      complete: true
+    });
+    saveTodos(todos);
+    generateTemplate(todoText);
     todoCount();//update the todo count
-    addForm.reset(); //Reset the input after submission
+    addForm.reset();//Reset the input after submission
+
+    // generateTemplate(todo); //only add todos that are atleast a character long
+    // todoCount();//update the todo count
+    // addForm.reset(); //Reset the input after submission
   }
 });
 
@@ -148,3 +192,4 @@ clearCompletedTodosButton.addEventListener('click', () => {
 });
 
 todoCount();//count the todos on page load
+renderTodosFromLocalStorage();//Render todos from local storage on page load
