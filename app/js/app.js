@@ -32,9 +32,8 @@ const todoStatus = () => {
         ? todo.classList.add("completed")
         : todo.classList.remove("completed");
 
-      todo.classList.contains("completed")
-        ? updateTodo(todo.getAttribute("id"))
-        : console.log("could not get the id");
+      // Update the todo status
+      updateTodo(todo.getAttribute("id"), checkBox.checked);
     });
 };
 
@@ -65,7 +64,7 @@ const generateTemplate = (todo, id) => {
   newTodo.setAttribute("id", id);
   newTodo.innerHTML = `
      <div class="list--wrapper">
-        <input type="checkbox" name="checkbox" class="check--todo">
+        <input type="checkbox" name="checkbox" class="check--todo" onclick="todoStatus()">
         <li>${todo}</li>
       </div>
      <button class="delete--todo">
@@ -86,7 +85,7 @@ const renderTodosFromLocalStorage = () => {
     newTodo.setAttribute("id", storedTodo.id);
     newTodo.innerHTML = `
        <div class="list--wrapper">
-          <input type="checkbox" name="checkbox" class="check--todo">
+          <input type="checkbox" name="checkbox" class="check--todo" onclick="todoStatus()">
           <li>${storedTodo.todo}</li>
         </div>
        <button class="delete--todo">
@@ -103,8 +102,20 @@ const renderTodosFromLocalStorage = () => {
 
 
 //function for updating todo status in local storage
-const updateTodo = (todoId) => {
-  console.log(todoId);
+const updateTodo = (todoId, isChecked) => {
+  let storedTodos = getTodos();
+
+  // iterate through the array and update the status of the todo in local storage
+  let updatedTodos = storedTodos.map(storedTodo => {
+    if (storedTodo.id == todoId) {
+      return {id: storedTodo.id, todo: storedTodo.todo, complete: isChecked}; 
+    } else {
+      return storedTodo;
+    }
+  });
+
+  //Save the updated todos to local storage
+  saveTodos(updatedTodos);
 };
 
 //function to delete todos from local storage
@@ -202,22 +213,16 @@ const filterTodos = (filter) => {
 
 //Listen for when a filter button is clicked on desktop mode
 desktopFilter.addEventListener("click", (e) => {
-  todoStatus();
   filterValues();
   filterTodos(filter);
 });
 
 //Listen for when a filter button is clicked on mobile mode
 mobileFilter.addEventListener("click", (e) => {
-  todoStatus();
   filterValues();
   filterTodos(filter);
 });
 
-//Listen for when the clear completed todos button is clicked
-clearCompletedTodosButton.addEventListener("click", () => {
-  clearCompletedTodos();
-});
 
 todoCount(); //count the todos on page load
 renderTodosFromLocalStorage(); //Render todos from local storage on page load
