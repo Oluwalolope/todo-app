@@ -114,6 +114,9 @@ header {
 .todos .input--wrapper:not(:last-child) {
   border-bottom: 1px solid var(--clr-border);
 }
+.todos .todo:hover {
+  cursor: move;
+}
 
 .input--wrapper {
   display: flex;
@@ -132,7 +135,7 @@ header {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-.input--wrapper .list--wrapper li:hover {
+.input--wrapper .list--wrapper input[type=checkbox]:hover {
   cursor: pointer;
 }
 .input--wrapper .list--wrapper input[type=checkbox]:checked ~ li {
@@ -141,6 +144,10 @@ header {
 }
 .input--wrapper .delete--todo {
   margin-left: var(--gap);
+}
+
+.dragging {
+  opacity: 0.5;
 }
 
 form.add {

@@ -62,6 +62,7 @@ const generateTemplate = (todo, id) => {
   newTodo.classList.add("input--wrapper");
   newTodo.classList.add("todo");
   newTodo.setAttribute("id", id);
+  newTodo.setAttribute("draggable", true);
   newTodo.innerHTML = `
      <div class="list--wrapper">
         <input type="checkbox" name="checkbox" class="check--todo" onclick="todoStatus()">
@@ -83,6 +84,7 @@ const renderTodosFromLocalStorage = () => {
     newTodo.classList.add("input--wrapper");
     newTodo.classList.add("todo");
     newTodo.setAttribute("id", storedTodo.id);
+    newTodo.setAttribute("draggable", true);
     newTodo.innerHTML = `
        <div class="list--wrapper">
           <input type="checkbox" name="checkbox" class="check--todo" onclick="todoStatus()">

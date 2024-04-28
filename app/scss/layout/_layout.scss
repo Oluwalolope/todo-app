@@ -46,6 +46,11 @@ header {
             border-bottom: 1px solid var(--clr-border);
         }
     }
+    .todo {
+        &:hover {
+            cursor: move;
+        }
+    }
 }
 
 .input--wrapper {
@@ -64,12 +69,12 @@ header {
             line-height: 1.15rem;
             padding-top: .5rem;
             padding-bottom: .5rem;
+        }
+        
+        input[type=checkbox] {
             &:hover {
                 cursor: pointer;
             }
-        }
-
-        input[type=checkbox] {
             &:checked {
                 ~li {
                     text-decoration: line-through;
@@ -84,6 +89,9 @@ header {
     }
 }
 
+.dragging {
+    opacity: .5;
+}
 
 form.add {
     margin-bottom: .75rem;
