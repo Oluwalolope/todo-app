@@ -23,7 +23,7 @@ const enableDarkMode = () => {
     darkModeToggle.querySelector("img").setAttribute("src", "assets/images/icon-sun.svg");
 
     //change the background image
-    document.body.style.backgroundImage = "url(../assets/images/bg-desktop-dark.jpg)";
+    document.body.style.backgroundImage = "url(assets/images/bg-desktop-dark.jpg)";
 }
 
 const disableDarkMode = () => {
@@ -42,7 +42,7 @@ const disableDarkMode = () => {
     darkModeToggle.querySelector('img').setAttribute('src', 'assets/images/icon-moon.svg');
 
     //change the background image
-    document.body.style.backgroundImage = "url(../assets/images/bg-desktop-light.jpg)";
+    document.body.style.backgroundImage = "url(assets/images/bg-desktop-light.jpg)";
 }
 
 const colorModeFromLocalStorage = () => {
