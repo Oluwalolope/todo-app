@@ -1,10 +1,10 @@
 @font-face {
   font-family: josefins-sans-bold;
-  src: url(../../../assets/fonts/JosefinSans-Bold.ttf) format("truetype");
+  src: url(../assets/fonts/JosefinSans-Bold.ttf) format("truetype");
 }
 @font-face {
   font-family: josefins-sans-regular;
-  src: url(../../../assets/fonts/JosefinSans-Regular.ttf) format("truetype");
+  src: url(../assets/fonts/JosefinSans-Regular.ttf) format("truetype");
 }
 :root {
   --background: hsl(0, 0%, 98%);
@@ -254,7 +254,7 @@ input[type=checkbox]:hover {
   cursor: pointer;
 }
 input[type=checkbox]::before {
-  content: url(/assets/images/icon-check.svg);
+  content: url(../assets/images/icon-check.svg);
   display: grid;
   place-items: center;
   width: 100%;

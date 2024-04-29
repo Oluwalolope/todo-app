@@ -33,7 +33,7 @@ input[type=checkbox] {
     }
 
     &::before {
-        content: url(/assets/images/icon-check.svg);
+        content: url(../assets/images/icon-check.svg);
         display: grid;
         place-items: center;
         width: 100%;
