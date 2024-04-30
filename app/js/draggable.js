@@ -1,4 +1,3 @@
-
 //Get reference for the todos to be dragged
 let draggableTodos = [...todoList.children];
 draggableTodos = draggableTodos.filter(todo => todo.classList.contains('todo'));
@@ -83,12 +82,24 @@ draggableTodos.forEach(draggableTodo => {
     });
 });
 
+// Function for getting draggable todo 
+const getDraggableTodo = (parent, valueToFind) => {
+    for (let i = 0; i < parent.children.length; i++) {
+      const child = parent.children[i];
+    
+      if (child.classList.contains(valueToFind)) {
+        return child;
+      } 
+    }
+    return null;
+}
+
 //Attach a touch move event listener
 container.addEventListener('touchmove', e => {
     e.preventDefault();
     const afterElement = getDragAfterElement(container,e.changedTouches[0].clientY);
     
-    const draggableTodo = document.querySelector('.dragging');
+    let draggableTodo = getDraggableTodo(container, 'dragging');
     const fixedBottom = container.lastElementChild;
 
     if(afterElement == null) {
