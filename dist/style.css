@@ -115,7 +115,7 @@ header {
   border-bottom: 1px solid var(--clr-border);
 }
 .todos .todo:hover {
-  cursor: move;
+  cursor: pointer;
 }
 
 .input--wrapper {
@@ -219,6 +219,7 @@ form.filter--mobile--todo {
 .attribution {
   margin-top: 1rem;
   text-align: center;
+  line-height: 1.1rem;
 }
 
 button {

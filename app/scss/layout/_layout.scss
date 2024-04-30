@@ -48,7 +48,7 @@ header {
     }
     .todo {
         &:hover {
-            cursor: move;
+            cursor: pointer;
         }
     }
 }
@@ -180,4 +180,5 @@ form.filter--mobile--todo {
 .attribution {
     margin-top: 1rem;
     text-align: center;
+    line-height: 1.1rem;
 }

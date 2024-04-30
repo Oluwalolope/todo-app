@@ -10,12 +10,24 @@ const container = document.querySelector('.todos');
 
 //Add a class of 'dragging' to indicate which todo is being dragged
 container.addEventListener('dragstart', e => {
-    e.target.classList.add('dragging');
+    if (e.target.type === "checkbox" || e.target.tagName === "LI" || e.target.tagName === "IMG") {
+      e.target.parentElement.parentElement.classList.add("dragging");
+    } 
+    
+    else if (e.target.classList.contains("delete--todo")) {
+      e.target.parentElement.classList.add("dragging");
+    } 
+    
+    else if (e.target.classList.contains("todo")) {
+      e.target.classList.add("dragging");
+    }
 });
 
 //Remove a class of 'dragging' to indicate which todo is not being dragged
 container.addEventListener('dragend', e => {
     e.target.classList.remove('dragging');
+    e.target.parentElement.classList.remove('dragging');
+    e.target.parentElement.parentElement.classList.remove('dragging');
 });
 
 //Attach a drag over event listener
@@ -68,17 +80,31 @@ const getDragAfterElement = (container, y) => {
 
 //Add a class of 'dragging' to indicate which todo is being dragged
 container.addEventListener('touchstart', e => {
-    e.target.classList.add('dragging');
+    if(e.target.type === 'checkbox' || e.target.tagName === 'LI' || e.target.tagName === 'IMG'){
+        e.target.parentElement.parentElement.classList.add('dragging');
+    } 
+
+    else if (e.target.classList.contains("delete--todo")) {
+      e.target.parentElement.classList.add("dragging");
+    }
+
+    else if(e.target.classList.contains('todo')) {
+        e.target.classList.add('dragging');
+    }
 });
 
 //Remove a class of 'dragging' to indicate which todo is not being dragged
 container.addEventListener('touchend', e => {
     e.target.classList.remove('dragging');
+    e.target.parentElement.classList.remove('dragging');
+    e.target.parentElement.parentElement.classList.remove('dragging');
 });
 
 //Remove a class of 'dragging' to indicate which todo is not being dragged
 container.addEventListener('touchcancel', e => {
     e.target.classList.remove('dragging');
+    e.target.parentElement.classList.remove('dragging');
+    e.target.parentElement.parentElement.classList.remove('dragging');
 });
 
 
