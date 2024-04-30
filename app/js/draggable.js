@@ -8,15 +8,14 @@ const container = document.querySelector('.todos');
 //===============DESKTOP DRAGGABLE===========
 
 
-//Add a class of 'dragging' to indicate whhich todo is being dragged
-draggableTodos.forEach(draggableTodo => {
-    draggableTodo.addEventListener('dragstart', () => {
-        draggableTodo.classList.add('dragging');
-    });
+//Add a class of 'dragging' to indicate which todo is being dragged
+container.addEventListener('dragstart', e => {
+    e.target.classList.add('dragging');
+});
 
-    draggableTodo.addEventListener('dragend', () => {
-        draggableTodo.classList.remove('dragging');
-    });
+//Remove a class of 'dragging' to indicate which todo is not being dragged
+container.addEventListener('dragend', e => {
+    e.target.classList.remove('dragging');
 });
 
 //Attach a drag over event listener
@@ -67,39 +66,28 @@ const getDragAfterElement = (container, y) => {
 
 //============MOBILE  AND DESKTOP=================
 
-//Add a class of 'dragging' to indicate whhich todo is being moved
-draggableTodos.forEach(draggableTodo => {
-    draggableTodo.addEventListener('touchstart', () => {
-        draggableTodo.classList.add('dragging');
-    });
-    
-    draggableTodo.addEventListener('touchend', () => {
-        draggableTodo.classList.remove('dragging');
-    });
-
-    draggableTodo.addEventListener('touchcancel', () => {
-        draggableTodo.classList.remove('dragging');
-    });
+//Add a class of 'dragging' to indicate which todo is being dragged
+container.addEventListener('touchstart', e => {
+    e.target.classList.add('dragging');
 });
 
-// Function for getting draggable todo 
-const getDraggableTodo = (parent, valueToFind) => {
-    for (let i = 0; i < parent.children.length; i++) {
-      const child = parent.children[i];
-    
-      if (child.classList.contains(valueToFind)) {
-        return child;
-      } 
-    }
-    return null;
-}
+//Remove a class of 'dragging' to indicate which todo is not being dragged
+container.addEventListener('touchend', e => {
+    e.target.classList.remove('dragging');
+});
+
+//Remove a class of 'dragging' to indicate which todo is not being dragged
+container.addEventListener('touchcancel', e => {
+    e.target.classList.remove('dragging');
+});
+
 
 //Attach a touch move event listener
 container.addEventListener('touchmove', e => {
     e.preventDefault();
     const afterElement = getDragAfterElement(container,e.changedTouches[0].clientY);
     
-    let draggableTodo = getDraggableTodo(container, 'dragging');
+    const draggableTodo = document.querySelector(".dragging");
     const fixedBottom = container.lastElementChild;
 
     if(afterElement == null) {
