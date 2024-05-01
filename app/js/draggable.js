@@ -76,21 +76,26 @@ const getDragAfterElement = (container, y) => {
 }
 
 
-//============MOBILE  AND DESKTOP=================
+//============TOUCH ENABLED DEVICES=================
+let longpress;
 
 //Add a class of 'dragging' to indicate which todo is being dragged
 container.addEventListener('touchstart', e => {
-    if(e.target.type === 'checkbox' || e.target.tagName === 'LI' || e.target.tagName === 'IMG'){
-        e.target.parentElement.parentElement.classList.add('dragging');
-    } 
+    longpress = setTimeout(() => {
+        if(e.target.type === 'checkbox' || e.target.tagName === 'LI' || e.target.tagName === 'IMG'){
+            e.target.parentElement.parentElement.classList.add('dragging');
+        } 
+    
+        else if (e.target.classList.contains("delete--todo")) {
+          e.target.parentElement.classList.add("dragging");
+        }
+    
+        else if(e.target.classList.contains('todo')) {
+            e.target.classList.add('dragging');
+        }
 
-    else if (e.target.classList.contains("delete--todo")) {
-      e.target.parentElement.classList.add("dragging");
-    }
-
-    else if(e.target.classList.contains('todo')) {
-        e.target.classList.add('dragging');
-    }
+        touchMoveStart();
+    }, 500);
 });
 
 //Remove a class of 'dragging' to indicate which todo is not being dragged
@@ -98,6 +103,8 @@ container.addEventListener('touchend', e => {
     e.target.classList.remove('dragging');
     e.target.parentElement.classList.remove('dragging');
     e.target.parentElement.parentElement.classList.remove('dragging');
+    clearTimeout(longpress);
+    touchMoveStop();
 });
 
 //Remove a class of 'dragging' to indicate which todo is not being dragged
@@ -105,37 +112,52 @@ container.addEventListener('touchcancel', e => {
     e.target.classList.remove('dragging');
     e.target.parentElement.classList.remove('dragging');
     e.target.parentElement.parentElement.classList.remove('dragging');
+    clearTimeout(longpress);
+    touchMoveStop();
 });
 
 
 //Attach a touch move event listener
-container.addEventListener('touchmove', e => {
-    e.preventDefault();
-    const afterElement = getDragAfterElement(container,e.changedTouches[0].clientY);
-    
-    const draggableTodo = document.querySelector(".dragging");
-    const fixedBottom = container.lastElementChild;
+const touchMoveStart = () =>    {
+    container.addEventListener('touchmove', touchMoveFunction);
+}
 
-    if(afterElement == null) {
-        container.insertBefore(draggableTodo, fixedBottom);//Let the todo info be fixed to the bottom
-    } else {
-        container.insertBefore(draggableTodo, afterElement);
-    }
+//Remove Touch event listener
+const touchMoveStop = () => {
+    console.log('touch act');
+    container.removeEventListener('touchmove', touchMoveFunction);
+}
 
-    let renderedTodos = [...container.children];
-    renderedTodos = renderedTodos.filter(renderedTodo => renderedTodo.classList.contains('todo')).map(renderedTodo => {
-        const checkBox = renderedTodo.querySelector("input[type=checkbox");
-        const todoText = renderedTodo.querySelector("li").textContent;
-        return {
-          id: renderedTodo.id,
-          todo: todoText,
-          complete: checkBox.checked
-        }; 
+//function for the touchmove
+function touchMoveFunction(e) {
+  e.preventDefault();
+  const afterElement = getDragAfterElement(container, e.changedTouches[0].clientY);
+
+  const draggableTodo = document.querySelector(".dragging");
+  const fixedBottom = container.lastElementChild;
+
+  if (afterElement == null) {
+    container.insertBefore(draggableTodo, fixedBottom); //Let the todo info be fixed to the bottom
+  } else {
+    container.insertBefore(draggableTodo, afterElement);
+  }
+
+  let renderedTodos = [...container.children];
+  renderedTodos = renderedTodos
+    .filter((renderedTodo) => renderedTodo.classList.contains("todo"))
+    .map((renderedTodo) => {
+      const checkBox = renderedTodo.querySelector("input[type=checkbox");
+      const todoText = renderedTodo.querySelector("li").textContent;
+      return {
+        id: renderedTodo.id,
+        todo: todoText,
+        complete: checkBox.checked,
+      };
     });
-    renderedTodos.reverse();//reverse the array to match the oreder in local storage
-    
-    saveTodos(renderedTodos);//save the ordered todos
-});
+  renderedTodos.reverse(); //reverse the array to match the oreder in local storage
+
+  saveTodos(renderedTodos); //save the ordered todos
+}
 
 //Get the value of the element being moved over
 const getDragAfterElementMobile = (container, y) => {
