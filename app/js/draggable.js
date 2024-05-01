@@ -81,6 +81,7 @@ let longpress;
 
 //Add a class of 'dragging' to indicate which todo is being dragged
 container.addEventListener('touchstart', e => {
+    //This function only fires if the user long presses for atleast 500 milliseconds
     longpress = setTimeout(() => {
         if(e.target.type === 'checkbox' || e.target.tagName === 'LI' || e.target.tagName === 'IMG'){
             e.target.parentElement.parentElement.classList.add('dragging');
@@ -124,7 +125,6 @@ const touchMoveStart = () =>    {
 
 //Remove Touch event listener
 const touchMoveStop = () => {
-    console.log('touch act');
     container.removeEventListener('touchmove', touchMoveFunction);
 }
 
