@@ -83,6 +83,9 @@ const renderTodosFromLocalStorage = () => {
     const newTodo = document.createElement("div");
     newTodo.classList.add("input--wrapper");
     newTodo.classList.add("todo");
+    if(storedTodo.complete){
+      newTodo.classList.add('completed')
+    }
     newTodo.setAttribute("id", storedTodo.id);
     newTodo.setAttribute("draggable", true);
     newTodo.innerHTML = `

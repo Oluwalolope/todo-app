@@ -77,12 +77,12 @@ const getDragAfterElement = (container, y) => {
 
 
 //============TOUCH ENABLED DEVICES=================
-let longpress;
+let longPress;
 
 //Add a class of 'dragging' to indicate which todo is being dragged
 container.addEventListener('touchstart', e => {
     //This function only fires if the user long presses for atleast 500 milliseconds
-    longpress = setTimeout(() => {
+    longPress = setTimeout(() => {
         if(e.target.type === 'checkbox' || e.target.tagName === 'LI' || e.target.tagName === 'IMG'){
             e.target.parentElement.parentElement.classList.add('dragging');
         } 
@@ -104,7 +104,7 @@ container.addEventListener('touchend', e => {
     e.target.classList.remove('dragging');
     e.target.parentElement.classList.remove('dragging');
     e.target.parentElement.parentElement.classList.remove('dragging');
-    clearTimeout(longpress);
+    clearTimeout(longPress);
     touchMoveStop();
 });
 
@@ -113,7 +113,7 @@ container.addEventListener('touchcancel', e => {
     e.target.classList.remove('dragging');
     e.target.parentElement.classList.remove('dragging');
     e.target.parentElement.parentElement.classList.remove('dragging');
-    clearTimeout(longpress);
+    clearTimeout(longPress);
     touchMoveStop();
 });
 
